@@ -15,7 +15,7 @@ module GoTranslateYourself
     def update
       if params[:translations] && !params[:translations].empty?
         params[:translations].each do |key, value|
-          GoTranslateYourself.current_store[key] = value
+          I18n.backend.store_translations(key.to_sym, value)
         end
       end
       redirect_to site_translations_path

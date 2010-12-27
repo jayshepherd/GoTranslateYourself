@@ -10,7 +10,7 @@ module GoTranslateYourself
         @keys = GoTranslateYourself.locales.collect {|lang| keys_without_prefix.collect {|key| "#{lang}.#{key}"} }.flatten
       end
 
-      @keys 
+      @keys
     end
 
     def default_translation(key)
