@@ -1,0 +1,23 @@
+<% id = "tabs-#{hash.object_id}" -%>
+<div id=<%= id -%>>
+  <ul>
+    <% hash.each do |key, child| %>
+      <li><a href="#tabs-<%= hash.object_id -%>-<%= key.object_id -%>"><%= key -%></a></li>
+    <% end %>
+  </ul>
+  <% hash.each do |key, child| %>
+    <% child_translations = get_translations_under(child, @translations) -%>
+    <% child_hash_array_representation = child.select{|k, v| v.is_a?(Hash) } -%>
+    <div id="tabs-<%= hash.object_id -%>-<%= key.object_id -%>">
+      <%= translation_table_for(child_translations, @locales) -%>
+      <% unless child_hash_array_representation.empty? -%>
+        <%= tabs_for(HashFromArray.hash_from_array(child_hash_array_representation)) -%>
+      <% end -%>
+    </div>
+  <% end %>
+</div>
+<script>
+  $(function() {
+    $('#<%= id -%>').tabs();
+  });
+</script>

@@ -11,7 +11,7 @@ module GoTranslateYourself
       end
       text_field_tag("translations[#{locale}]#{key_parts}",
                      translation_text || "",
-                     :size => (default_translation.size + 20))
+                     :size => (default_translation.size))
     end
   end
 end

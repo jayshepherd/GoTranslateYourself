@@ -1,0 +1,8 @@
+<% hash.each do |key, child| %>
+  <h3><%= key -%></h3>
+  <% child_translations = get_translations_under(child, @translations) -%>
+  <% child_hash_array_representation = child.select{|k, v| v.is_a?(Hash) } -%>
+  <% child_hash = HashFromArray.hash_from_array(child_hash_array_representation) -%>
+  <%= tabs_full_for(child_hash) -%>
+  <%= translation_table_for(child_translations, @locales) -%>
+<% end %>
